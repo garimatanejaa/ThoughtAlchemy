@@ -1,8 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import { transformIdea } from '../services/genAIService.js';
-import Idea from '../models/Idea.js';
+import { transformIdea, saveIdeaWithEvolution } from '../services/genAIService.js';
 
-// POST /api/transform
 export const transformHandler = asyncHandler(async (req, res) => {
   const { originalText, transformationType } = req.body;
 
@@ -11,17 +9,14 @@ export const transformHandler = asyncHandler(async (req, res) => {
     throw new Error('Please provide both originalText and transformationType');
   }
 
-  // Call Gemini/OpenAI service to transform the idea
   const transformedText = await transformIdea(originalText, transformationType);
 
-  // Save to DB for DNA Viewer
-  const savedIdea = await Idea.create({
-    user: req.user._id,
+  const savedIdea = await saveIdeaWithEvolution(
+    req.user._id,
     originalText,
     transformedText,
-    transformationType,
-    dnaMapping: { source: 'Gemini', method: 'Transformation' }
-  });
+    transformationType
+  );
 
   res.status(201).json(savedIdea);
 });

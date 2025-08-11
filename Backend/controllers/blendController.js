@@ -1,6 +1,5 @@
-import Idea from '../models/Idea.js';
-import { blendIdeas } from '../services/genAIService.js';
 import asyncHandler from '../middleware/asyncHandler.js';
+import { blendIdeas, saveIdeaWithEvolution } from '../services/genAIService.js';
 
 export const blendHandler = asyncHandler(async (req, res) => {
   const { idea1, idea2 } = req.body;
@@ -11,20 +10,14 @@ export const blendHandler = asyncHandler(async (req, res) => {
 
   const blendedText = await blendIdeas(idea1, idea2);
 
-  // Save to DB
-  const newIdea = await Idea.create({
-    user: req.user._id,
-    originalText: `${idea1} + ${idea2}`,
-    transformedText: blendedText,
-    transformationType: 'blend',
-    blendedWith: idea2,
-    dnaMapping: {
-      parts: [
-        { source: 'idea1', text: idea1 },
-        { source: 'idea2', text: idea2 }
-      ]
-    }
-  });
+  // Save to DB with Idea Evolution Map instead of old DNA mapping
+  const newIdea = await saveIdeaWithEvolution(
+    req.user._id,  // current user
+    idea1,         // primary idea
+    blendedText,   // final output
+    "blend",       // transformation type
+    idea2          // secondary idea for blending
+  );
 
   res.status(201).json(newIdea);
 });

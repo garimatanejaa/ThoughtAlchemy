@@ -6,6 +6,8 @@ import transformRoutes from "./routes/transformRoutes.js";
 import blendRoutes from './routes/blendRoutes.js';
 import dnaRoutes from './routes/dnaRoutes.js';
 import userIdeasRoutes from "./routes/userIdeasRoutes.js";
+import ideaRoutes from "./routes/ideaRoutes.js";
+import evolutionRoutes from "./routes/evolutionRoutes.js";
 import cors from 'cors';
 
   
@@ -23,7 +25,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/transform", transformRoutes);
 app.use('/api/blend', blendRoutes);
 app.use('/api/dna', dnaRoutes);
-app.use("/api/user", userIdeasRoutes);  
+app.use("/api/user", userIdeasRoutes); 
+app.use("/api/ideas", ideaRoutes); 
+app.use("/api/evolution", evolutionRoutes);
 // app.get("/", (req, res) => {
 //   res.send("API is running...");
 // });

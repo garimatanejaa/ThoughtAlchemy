@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import api from "../api";
+import axios from "axios";
 import {
   Lightbulb,
   Zap,
@@ -20,16 +22,26 @@ import IdeaTransformation from "./IdeaTransformation";
 import IdeaDNA from "./IdeaDNA";
 import IdeaBlending from "./IdeaBlending";
 import RecentActivity from "./RecentActivity"; // Import the new component
+import IdeaEvolutionViewer from "./IdeaEvolutionViewer";
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("dashboard");
 
-  // Existing recent ideas
-  const [recentIdeas] = useState([
-    { id: 1, title: "AI-powered meditation app", timestamp: "2 hours ago" },
-    { id: 2, title: "Sustainable packaging solution", timestamp: "1 day ago" },
-    { id: 3, title: "Virtual reality fitness", timestamp: "3 days ago" },
-  ]);
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [recentIdeas, setRecentIdeas] = useState([]);
+  const [loadingRecent, setLoadingRecent] = useState(false);
+  useEffect(() => {
+    setLoadingRecent(true);
+    api
+      .get("/ideas/recent?limit=4")
+      .then((res) => {
+        setRecentIdeas(res.data); // make sure your API returns an array
+      })
+      .catch((err) => {
+        console.error("Error fetching recent ideas:", err);
+      })
+      .finally(() => setLoadingRecent(false));
+  }, []);
+  
 
   // New recent activity data with prompts & tags
   const [recentActivity] = useState([
@@ -55,7 +67,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Commented out for Claude.ai compatibility
+    localStorage.removeItem("token"); 
     console.log("Logging out...");
     navigate("/login");
   };
@@ -271,37 +283,55 @@ const Dashboard = () => {
 
             {/* Recent Ideas (existing) */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-              <div className="px-6 py-4 border-b border-gray-200 flex items-center">
-                <Clock className="w-5 h-5 text-purple-500 mr-2" />
-                <h2 className="text-lg font-semibold text-gray-800">Recent Ideas</h2>
-              </div>
-              <div className="p-6">
-                {recentIdeas.length > 0 ? (
-                  <ul className="space-y-4">
-                    {recentIdeas.map((idea) => (
-                      <li
-                        key={idea.id}
-                        className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
-                      >
-                        <div className="flex items-center">
-                          <div className="w-3 h-3 bg-purple-500 rounded-full mr-4"></div>
-                          <div>
-                            <p className="text-gray-800 font-medium">{idea.title}</p>
-                            <p className="text-gray-500 text-sm">{idea.timestamp}</p>
-                          </div>
-                        </div>
-                        <Star className="w-5 h-5 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <div className="text-center py-12 text-gray-500">
-                    <Lightbulb className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-                    <p className="text-lg">No ideas yet. Start your creative journey!</p>
-                  </div>
-                )}
+  <div className="px-6 py-4 border-b border-gray-200 flex items-center">
+    <Clock className="w-5 h-5 text-purple-500 mr-2" />
+    <h2 className="text-lg font-semibold text-gray-800">Recent Ideas</h2>
+  </div>
+  <div className="p-6">
+    {loadingRecent ? (
+      <p className="text-gray-500">Loading...</p>
+    ) : recentIdeas.length > 0 ? (
+      <ul className="space-y-4">
+        {recentIdeas.map((idea) => (
+          <li
+            key={idea._id}
+            className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
+          >
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-purple-500 rounded-full mr-4"></div>
+              <div>
+                <p className="text-gray-800 font-medium">
+                  {idea.originalText.length > 80 
+                    ? idea.originalText.substring(0, 80) + "..." 
+                    : idea.originalText}
+                </p>
+                <div className="flex items-center space-x-2 mt-1">
+                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">
+                    {idea.transformationType}
+                  </span>
+                  <p className="text-gray-500 text-sm">
+                    {new Date(idea.createdAt).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })}
+                  </p>
+                </div>
               </div>
             </div>
+            <Star className="w-5 h-5 text-gray-400 hover:text-yellow-500 cursor-pointer transition-colors" />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div className="text-center py-12 text-gray-500">
+        <Lightbulb className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+        <p className="text-lg">No ideas yet. Start your creative journey!</p>
+      </div>
+    )}
+  </div>
+</div>
           </div>
         ) : activeTab === "transform" ? (
           <div className="flex-grow p-8 overflow-auto bg-gray-50">
@@ -313,7 +343,7 @@ const Dashboard = () => {
           </div>
         ) : activeTab === "dna" ? (
           <div className="flex-grow p-8 overflow-auto bg-gray-50">
-            <IdeaDNA />
+            <IdeaEvolutionViewer />
           </div>
         ) : activeTab === "history" ? (
           <RecentActivity recentActivity={recentActivity} />
@@ -404,3 +434,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+

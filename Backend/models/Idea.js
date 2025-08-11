@@ -6,7 +6,7 @@ const ideaSchema = new mongoose.Schema({
   transformedText: { type: String },
   transformationType: { type: String, enum: ['pitch', 'poem', 'plan','blend'], required: true },
   blendedWith: { type: String }, // optional for blending
-  dnaMapping: { type: Object },  // key parts origin
+  evolutionMap: { type: Object },  // key parts origin
 }, { timestamps: true });
 
 export default mongoose.model('Idea', ideaSchema);
