@@ -14,11 +14,11 @@ From “what if” to “this is it”, ThoughtAlchemy is where your ideas find 
 
 ## Features
 
-- **Transform Ideas** — Instantly reframe an idea into a pitch, tweet, business plan, or any format you choose.  
-- **Blend Ideas** — Merge two unrelated concepts into something fresh and mind-blowing.  
-- **Track Idea Evolution** — Visualize how your thoughts change and refine over time.  
-- **Recent Ideas Dashboard** — Your latest creations, right where you left them.  
-- **JWT Auth Protected API** — All your genius, securely stored.  
+- **Transform Ideas**:  Instantly reframe an idea into a pitch, tweet, business plan, or any format you choose.  
+- **Blend Ideas**: Merge two unrelated concepts into something fresh and mind-blowing.  
+- **Track Idea Evolution**: Visualize how your thoughts change and refine over time.  
+- **Recent Ideas Dashboard**:  Your latest creations, right where you left them.  
+- **JWT Auth Protected API**: All your genius, securely stored.  
 
 ---
 
@@ -40,10 +40,10 @@ From “what if” to “this is it”, ThoughtAlchemy is where your ideas find 
 
 ## Use Cases
 
-- **Founders** — Turn napkin notes into investor-ready pitches.  
-- **Marketers** — Rapidly brainstorm campaign ideas.  
-- **Students** — Generate creative angles for projects.  
-- **Creators** — Blend and evolve concepts for unique content.  
+- **Founders**: Turn napkin notes into investor-ready pitches.  
+- **Marketers**: Rapidly brainstorm campaign ideas.  
+- **Students**: Generate creative angles for projects.  
+- **Creators**: Blend and evolve concepts for unique content.  
 
 ---
 
@@ -65,10 +65,10 @@ https://youtu.be/_doE2Kmv1GU
 1. **User logs in** → Token stored in localStorage.  
 2. **Choose your magic** → Transform, blend, or evolve ideas.  
 3. **Backend routes**:
-   - `POST /api/transform` — Transform one idea.  
-   - `POST /api/blend` — Merge two ideas.  
-   - `POST /api/evolution` — Analyze how an idea changed.  
-   - `GET /api/ideas/recent` — Fetch your latest ideas.  
+   - `POST /api/transform`: Transform one idea.  
+   - `POST /api/blend`: Merge two ideas.  
+   - `POST /api/evolution`: Analyze how an idea changed.  
+   - `GET /api/ideas/recent`: Fetch your latest ideas.  
 4. **AI does the heavy lifting** via Google Gemini API.  
 5. **Ideas saved** to MongoDB with evolution mapping.  
 6. **Dashboard updates** instantly - your creative history at a glance.  
