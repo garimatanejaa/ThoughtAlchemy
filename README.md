@@ -49,7 +49,7 @@ From “what if” to “this is it”, ThoughtAlchemy is where your ideas find 
 
 ## App Snippets
 
-Comming soon 
+Coming soon 
 
 ---
 
