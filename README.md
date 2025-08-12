@@ -14,7 +14,7 @@ From “what if” to “this is it”, ThoughtAlchemy is where your ideas find 
 
 ## Features
 
-- **Transform Ideas**:  Instantly reframe an idea into a pitch, tweet, business plan, or any format you choose.  
+- **Transform Ideas**:  Instantly reframe an idea into a pitch, poem, business plan, or any format you choose.  
 - **Blend Ideas**: Merge two unrelated concepts into something fresh and mind-blowing.  
 - **Track Idea Evolution**: Visualize how your thoughts change and refine over time.  
 - **Recent Ideas Dashboard**:  Your latest creations, right where you left them.  
