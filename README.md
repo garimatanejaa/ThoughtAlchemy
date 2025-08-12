@@ -71,7 +71,7 @@ https://youtu.be/_doE2Kmv1GU
    - `GET /api/ideas/recent` — Fetch your latest ideas.  
 4. **AI does the heavy lifting** via Google Gemini API.  
 5. **Ideas saved** to MongoDB with evolution mapping.  
-6. **Dashboard updates** instantly — your creative history at a glance.  
+6. **Dashboard updates** instantly - your creative history at a glance.  
 
 ---
 
