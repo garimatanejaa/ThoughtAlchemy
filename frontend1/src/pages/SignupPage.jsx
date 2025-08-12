@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/navbar";  // import Navbar
+import Navbar from "../components/navbar";  
 
 const SignupPage = () => {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles, Zap, Blend, Eye, ArrowRight, Play, Star, Users, BookOpen, Target, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar';
-// Animated Background Component
+
 
 const AnimatedBackground = () => {
   return (
@@ -21,7 +21,7 @@ const AnimatedBackground = () => {
   );
 };
 
-// Feature Card Component
+
 const FeatureCard = ({ icon: Icon, title, description, gradient }) => {
   return (
     <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-purple-100/50 group">
@@ -34,7 +34,7 @@ const FeatureCard = ({ icon: Icon, title, description, gradient }) => {
   );
 };
 
-// Testimonial Component
+
 const TestimonialCard = ({ name, role, content, avatar }) => {
   return (
     <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-100/50">
@@ -57,10 +57,10 @@ const TestimonialCard = ({ name, role, content, avatar }) => {
   );
 };
 
-// Stats Component
 
 
-// Main Homepage Component
+
+
 const ThoughtAlchemyHomepage = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const navigate = useNavigate();
@@ -227,26 +227,6 @@ const ThoughtAlchemyHomepage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section id="testimonials" className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-200 mb-6">
-              <Users className="w-4 h-4 text-purple-500" />
-              <span className="text-sm font-medium text-purple-700">Loved by 10,000+ Creators</span>
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-gray-800 mb-6">
-              What Our Users Say
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="relative z-10 py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-500 to-yellow-400">
@@ -321,10 +301,15 @@ const ThoughtAlchemyHomepage = () => {
               </button>
             </div>
             <div className="aspect-video bg-gradient-to-br from-purple-100 to-yellow-100 flex items-center justify-center">
-              <div className="text-center">
-                <Play className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                <p className="text-gray-600">Demo video would play here</p>
-              </div>
+            <iframe
+    width="100%"
+    height="100%"
+    src="  https://www.youtube.com/embed/doE2Kmv1GU?autoplay=1"
+    title="ThoughtAlchemy Demo"
+    //frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
             </div>
           </div>
         </div>

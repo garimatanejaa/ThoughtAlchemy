@@ -45,6 +45,9 @@ export const blendIdeas = async (idea1, idea2) => {
     }
   } catch (err) {
     console.error("Gemini API Blend Error:", err.message);
+    if (err.message && err.message.includes("503")) {
+      throw new Error("Our AI service is busy right now. Please try again in a moment.");
+    }
     throw new Error("Idea blending failed due to API error.");
   }
 };
