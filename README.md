@@ -1,7 +1,7 @@
 # ThoughtAlchemy  
 ### **Transform Your Ideas Into Magic** ✨  
 
- 
+<img src="Logo.png" width="150"/>
 Turn scattered thoughts into polished pitches, blend concepts into groundbreaking innovations, and visualize your creative DNA with our revolutionary AI platform.  
 
 ThoughtAlchemy is your AI-powered creative lab, a space where you can **Transform • Blend • Create** without limits. Whether you’re refining a spark of inspiration, merging two worlds into one, or mapping the evolution of your concepts, we make the process effortless and inspiring.  
